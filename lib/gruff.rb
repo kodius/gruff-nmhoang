@@ -9,6 +9,7 @@ require 'gruff/version'
   area
   bar
   bar_n_line
+  bar_n_stacked
   bezier
   bullet
   dot

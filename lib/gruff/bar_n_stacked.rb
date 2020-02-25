@@ -81,7 +81,7 @@ protected
       @norm_data1 << nd
       @norm_data1.each_with_index do |data_row, row_index|
         data_row[DATA_VALUES_INDEX].each_with_index do |data_point, point_index|
-          left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding + point_index * margin
+          left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding + point_index
           right_x = left_x + @bar_width * @bar_spacing + 5
           conv = []
           conversion.get_left_y_right_y_scaled( data_point, conv )
@@ -125,7 +125,7 @@ protected
         draw_label(label_center, point_index)
 
         next if (data_point == 0)
-        left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding + (point_index / 2)
+        left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding
         right_x = left_x + @bar_width * @bar_spacing + 5
 
         left_y = @graph_top + (@graph_height -

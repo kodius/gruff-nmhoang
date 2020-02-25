@@ -130,7 +130,7 @@ protected
 
         @all_left_x.each_with_index do |x, i|
           next if i != point_index
-          @left_x = x + @bar_width
+          @left_x = x + @bar_width + 5
         end
         # left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding
         right_x = @left_x + @bar_width * @bar_spacing + 5

@@ -77,11 +77,13 @@ protected
       end
 
       # iterate over all normalised data
+      @all_left_x = []
       @norm_data1 = []
       @norm_data1 << nd
       @norm_data1.each_with_index do |data_row, row_index|
         data_row[DATA_VALUES_INDEX].each_with_index do |data_point, point_index|
           left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding + point_index
+          @all_left_x << left_x
           right_x = left_x + @bar_width * @bar_spacing + 5
           conv = []
           conversion.get_left_y_right_y_scaled( data_point, conv )
@@ -125,8 +127,13 @@ protected
         draw_label(label_center, point_index)
 
         next if (data_point == 0)
-        left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding
-        right_x = left_x + @bar_width * @bar_spacing + 5
+
+        @all_left_x.each_with_index do |x, i|
+          next if i != point_index
+          @left_x = x + @bar_width
+        end
+        # left_x = @graph_left + (@bar_width * (1 + point_index + ((@data.length - 1) * point_index))) + padding
+        right_x = @left_x + @bar_width * @bar_spacing + 5
 
         left_y = @graph_top + (@graph_height -
                                data_point * @graph_height - 
@@ -135,7 +142,7 @@ protected
 
         height[point_index] += (data_point * @graph_height )
 
-        @d = @d.rectangle(left_x, left_y, right_x, right_y)
+        @d = @d.rectangle(@left_x, left_y, right_x, right_y)
       end
     end
     @d.draw(@base_image)
